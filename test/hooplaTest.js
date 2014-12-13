@@ -1,7 +1,6 @@
 'use strict';
-/* global describe, it */
 
-var Hoopla = require('../hoopla');
+var Hoopla = require('../src/Hoopla');
 var expect = require('chai').expect;
 
 describe('Hoopla', function() {
@@ -9,7 +8,7 @@ describe('Hoopla', function() {
         var dispatcher = new Hoopla();
         var listener = function() {};
         dispatcher.addListener('test', listener);
-        expect(dispatcher.hasListeners('test')).to.equal(true);
+        expect(dispatcher.hasListeners('test')).to.be.true();
         expect(dispatcher.getListeners('test')).to.deep.equal([listener]);
     });
 
@@ -28,7 +27,7 @@ describe('Hoopla', function() {
         var listenerB = function() {};
         var listenerC = function() {};
         dispatcher.addListener('test', listenerC, 1);
-        dispatcher.addListener('test', listenerB, 0);
+        dispatcher.addListener('test', listenerB);
         dispatcher.addListener('test', listenerA, -1);
         expect(dispatcher.getListeners('test')).to.deep.equal([listenerA, listenerB, listenerC]);
     });
@@ -53,16 +52,15 @@ describe('Hoopla', function() {
         expect(c).to.equal(true);
     });
 
-    it('dispatches events with arguments', function() {
+    it('dispatches a string event with an event object', function() {
         var dispatcher = new Hoopla();
-        var a, b;
-        dispatcher.addListener('test', function(x, y) {
-            a = x;
-            b = y;
+        var event;
+        dispatcher.addListener('test', function(ev) {
+            event = ev;
         });
-        dispatcher.dispatch('test', 'a', 'b');
-        expect(a).to.equal('a');
-        expect(b).to.equal('b');
+        dispatcher.dispatch('test', {foo: 'foo val'});
+        expect(event.getName()).to.equal('test');
+        expect(event.get('foo')).to.equal('foo val');
     });
 
     it('can dispatch twice', function() {
@@ -74,5 +72,41 @@ describe('Hoopla', function() {
         dispatcher.dispatch('test');
         dispatcher.dispatch('test');
         expect(calls).to.equal(2);
+    });
+
+    it('can create an event object', function() {
+        var dispatcher = new Hoopla();
+        var event = dispatcher.createEvent('myEvent', {foo: 'foo val', bar: 'bar val'});
+        expect(event.getName()).to.equal('myEvent');
+        expect(event.get('foo')).to.equal('foo val');
+        expect(event.get('bar')).to.equal('bar val');
+    });
+
+    it('can stop propagation', function() {
+        var dispatcher = new Hoopla();
+        var calledFirst = false, calledSecond = false;
+        dispatcher.addListener('test', function(event) {
+            calledFirst = true;
+            event.stopPropagation();
+        });
+
+        dispatcher.addListener('test', function() {
+            calledSecond = true;
+        });
+        dispatcher.dispatch('test');
+
+        expect(calledFirst).to.be.true();
+        expect(calledSecond).to.be.false();
+    });
+
+    it('can dispatch with an event object', function() {
+        var dispatcher = new Hoopla();
+        var event = dispatcher.createEvent('myEvent');
+        var listenerEvent;
+        dispatcher.addListener('myEvent', function(ev) {
+            listenerEvent = ev;
+        });
+        dispatcher.dispatch(event);
+        expect(listenerEvent).to.equal(event);
     });
 });
