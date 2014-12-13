@@ -1,0 +1,29 @@
+{
+  "name": "hoopla",
+  "version": "0.0.1",
+  "description": "An event dispatcher with priorities",
+  "main": "hoopla.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/justinhoward/hoopla.git"
+  },
+  "keywords": [
+    "event",
+    "dispatcher",
+    "listener",
+    "emitter"
+  ],
+  "author": "Justin Howard <jmhoward0@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/justinhoward/hoopla/issues"
+  },
+  "homepage": "https://github.com/justinhoward/hoopla",
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "mocha": "^2.0.1"
+  }
+}
