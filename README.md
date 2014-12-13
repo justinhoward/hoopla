@@ -1,5 +1,7 @@
 # Hoopla
 
+[![Build Status](https://travis-ci.org/justinhoward/hoopla.svg)](https://travis-ci.org/justinhoward/hoopla)
+
 An event dispatcher for JavaScript that knows its priorities.
 
 ## Setup
