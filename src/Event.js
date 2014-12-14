@@ -72,16 +72,6 @@ proto.setAttributes = function(attributes) {
 };
 
 /**
- * Check if the given attribute is set
- *
- * @param {string} name The attribute name
- * @return {boolean} True if the attribute is set, false if not
- */
-proto.has = function(name) {
-    return this._attrs.hasOwnProperty(name);
-};
-
-/**
  * Stop propagation for this event. Additional listeners will
  * not be called.
  *

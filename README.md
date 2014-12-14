@@ -58,7 +58,7 @@ Hoopla passes an `Event` object to your event listeners. Events are objects that
 
 ```javascript
 dispatcher.addListener('route', function(event) {
-    if (event.getName() === 'route' && event.has('foo')) {
+    if (event.getName() === 'route') {
         console.log(event.get('foo'));
     } else {
         event.set('foo', 3);

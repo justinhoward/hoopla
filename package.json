@@ -1,6 +1,6 @@
 {
   "name": "hoopla",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An event dispatcher with priorities",
   "main": "hoopla.js",
   "scripts": {

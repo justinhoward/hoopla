@@ -16,13 +16,6 @@ describe('Event', function() {
         expect(event.get('foo')).to.equal('foo val');
     });
 
-     it('can check if it has an attribute', function() {
-        var event = new Event('foo');
-        event.set('foo', 'foo val');
-        expect(event.has('foo')).to.be.true();
-        expect(event.has('bar')).to.be.false();
-    });
-
     it('can set attributes', function() {
         var event = new Event('foo');
         var attrs = {foo: 'foo val', bar: 'bar val'};
