@@ -1,6 +1,8 @@
-# Hoopla
+# Hoopla [![npm version](https://badge.fury.io/js/hoopla.svg)](http://badge.fury.io/js/hoopla)
 
 [![Build Status](https://travis-ci.org/justinhoward/hoopla.svg)](https://travis-ci.org/justinhoward/hoopla)
+[![Code Climate](https://codeclimate.com/github/justinhoward/hoopla/badges/gpa.svg)](https://codeclimate.com/github/justinhoward/hoopla)
+[![Test Coverage](https://codeclimate.com/github/justinhoward/hoopla/badges/coverage.svg)](https://codeclimate.com/github/justinhoward/hoopla)
 
 An event dispatcher for JavaScript that knows its priorities.
 
