@@ -23,6 +23,14 @@ describe('Event', function() {
         expect(event.getAttributes()).to.deep.equal(attrs);
     });
 
+    it('only sets own properties', function() {
+        var event = new Event('foo');
+        var Ctor = function() {};
+        Ctor.prototype = {foo: 'foo'};
+        event.setAttributes(new Ctor());
+        expect(event.get('foo')).to.equal(undefined);
+    });
+
     it('can stop propagation', function() {
         var event = new Event('foo');
 

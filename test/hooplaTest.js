@@ -74,6 +74,11 @@ describe('Hoopla', function() {
         expect(calls).to.equal(2);
     });
 
+    it('can dispatch event with no listeners', function() {
+        var dispatcher = new Hoopla();
+        dispatcher.dispatch('test');
+    });
+
     it('can create an event object', function() {
         var dispatcher = new Hoopla();
         var event = dispatcher.createEvent('myEvent', {foo: 'foo val', bar: 'bar val'});
